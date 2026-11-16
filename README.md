@@ -88,16 +88,6 @@ The job-search status uses a compact badge with a Lucide magnifier that gently g
 
 Motion includes the magnifier's slow 3.6-second search cycle, a small intro entrance, short color transitions, external-link arrow movement, and slight scaling of supplied images. `prefers-reduced-motion` disables non-essential animations, transitions, and smooth scrolling. Content and navigation remain functional without JavaScript.
 
-## Flight mini-game
-
-The game is currently hidden. Set `gameEnabled` to `true` in `src/_data/site.json` to restore it. While disabled, the portfolio emits no game launcher, dialog, or script. The module, tests, and existing browser records are preserved.
-
-When enabled, the footer's **Play / Грати** button opens a native modal dialog with a small drone arcade game. Both profiles use the same game, with the active profile's accent and the page's EN/UK copy. Each star awards 10 points; the player has three lives, and difficulty increases every 15 seconds. Incoming obstacles have a short edge warning and hits grant a recovery period. Move with the mouse, arrow keys, WASD, or a relative touch drag. Space / P pauses; Escape closes. The game also pauses when the tab loses focus or the arena changes size, and resumes only through an explicit action.
-
-When enabled, `src/assets/game/launch.js` is the only script loaded with the portfolio. It imports `game.js` on the first click; that module composes the pure simulation in `engine.js`, canvas rendering in `draw.js`, and browser-local records in `records.js`. No game loop runs while the dialog is closed or paused. The launcher remains hidden without JavaScript, leaving the portfolio fully usable. A failed load offers a retry. Optional star pulsing is disabled for reduced motion; the game's essential movement remains available after the player starts it.
-
-The best score and longest flight are stored under `am-portfolio-flight:v1` in `localStorage`, shared across languages and profiles on the same origin. Closing a round also saves its results. Blocked or full storage falls back to the current tab's memory; malformed records are reset safely. There is no shared leaderboard or game service. `npm run test:game` checks movement, collection, collision recovery, fast collisions, round completion, resizing, and storage failures; it also runs as part of `npm test` and CI.
-
 ## GitHub Pages
 
 The Git remote currently uses an old repository name (`andriimatviienko.github.io`); GitHub redirects it to [AndreyMatviyenko/andreymatviyenko.github.io](https://github.com/AndreyMatviyenko/andreymatviyenko.github.io). The public repository's default branch is `master`.
