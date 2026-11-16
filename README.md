@@ -129,3 +129,4 @@ To inspect the original locally, extract the archive into a **new empty director
 `backups/portfolio-eleventy-before-deftech.tar.gz` additionally preserves the first Eleventy version before the DefTech redesign. It contains that version's source and workflow files; it does not include installed dependencies or build output. Extract it into a new directory, copy the unchanged `legacy/` and original backup there, and use `npm ci` to reproduce that version. The one-click rollback workflow above continues to restore the original pre-Eleventy site.
 
 `backups/portfolio-before-tailwind.tar.gz` preserves the source and PDFs before the Tailwind conversion and bottom-switch changes.
+
