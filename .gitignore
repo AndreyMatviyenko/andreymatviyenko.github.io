@@ -1,2 +1,6 @@
-# Dependency directory
-node_modules
+node_modules/
+.cache/
+_site/
+_site-prefix/
+.DS_Store
+*.log

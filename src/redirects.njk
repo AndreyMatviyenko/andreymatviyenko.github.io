@@ -1,0 +1,10 @@
+---
+oldPages: [contact, chat]
+pagination:
+  data: oldPages
+  size: 1
+  alias: oldPage
+permalink: "{{ oldPage }}.html"
+---
+<!doctype html>
+<html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="0; url={{ '/' | url }}#contact"><title>Контакт — Матвієнко Андрій</title><link rel="canonical" href="{{ '/' | absoluteUrl }}"><link rel="stylesheet" href="{{ '/assets/site.css' | url }}"></head><body><main class="page-shell simple-page"><h1>Зв’язатися зі мною.</h1><a class="button button-primary" href="{{ '/' | url }}#contact">До контактів {% icon "arrow-right" %}</a></main></body></html>

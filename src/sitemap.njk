@@ -1,0 +1,11 @@
+---
+permalink: sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{% for variant in variants %}  <url>
+    <loc>{{ variant.path | absoluteUrl }}</loc>
+    <xhtml:link rel="alternate" hreflang="{{ variant.lang }}" href="{{ variant.path | absoluteUrl }}"/>
+    <xhtml:link rel="alternate" hreflang="{% if variant.lang == 'uk' %}en{% else %}uk{% endif %}" href="{{ variant.alternate | absoluteUrl }}"/>
+  </url>
+{% endfor %}</urlset>

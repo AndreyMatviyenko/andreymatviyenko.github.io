@@ -1,0 +1,39 @@
+name: Restore pre-Eleventy portfolio
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  restore:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify original archive
+        run: echo '3fdfe4ce0127f5e0d38e847028ecad10df3efa08896f30bf9fcd305eb405e477  backups/portfolio-pre-11ty-3c335fe.tar.gz' | sha256sum --check
+      - name: Restore original public files
+        run: |
+          mkdir _site
+          tar -xzf backups/portfolio-pre-11ty-3c335fe.tar.gz -C _site index.html contact.html chat.html header.min.css main.min.css img js libs Resume-MatviyenkoAndrey.pdf
+          touch _site/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Publish previous version
+        id: deployment
+        uses: actions/deploy-pages@v4

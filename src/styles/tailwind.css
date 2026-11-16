@@ -1,0 +1,102 @@
+@import "tailwindcss" source(none);
+@source "../**/*.njk";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --color-ink: #252925;
+  --color-muted: #626a63;
+  --color-line: #e5e8e3;
+  --color-surface: #f5f6f3;
+  --animate-enter: enter 340ms cubic-bezier(.2, .65, .3, 1) both;
+
+  @keyframes enter {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@theme inline {
+  --color-accent: var(--profile-accent);
+  --color-accent-soft: var(--profile-soft);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --profile-accent: #294b3e;
+    --profile-soft: #edf2ec;
+    --dock-clearance: calc(120px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .profile-frontend { --profile-accent: #285cbe; --profile-soft: #edf2fc; }
+
+  html {
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+    scroll-padding-top: 130px;
+    scroll-padding-bottom: var(--dock-clearance);
+  }
+
+  body { @apply m-0 bg-white font-sans text-ink antialiased; line-height: 1.7; }
+  a, button, summary { -webkit-tap-highlight-color: transparent; }
+  button { cursor: pointer; }
+  a { transition: color 160ms ease, background-color 160ms ease, text-decoration-color 160ms ease; }
+  a:focus-visible, button:focus-visible, canvas:focus-visible, summary:focus-visible { outline: 2px solid var(--profile-accent); outline-offset: 4px; }
+  a, button, summary, [tabindex] { scroll-margin-block: 12px; }
+  html.game-open { overflow: hidden; overscroll-behavior: none; }
+  a:active { color: var(--profile-accent); }
+  ::selection { background: var(--profile-soft); color: var(--profile-accent); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition-duration: 0s !important; }
+  }
+}
+
+@layer components {
+  .icon { @apply inline-block shrink-0 align-middle; }
+  .page-shell { @apply mx-auto w-[calc(100%_-_2.5rem)] max-w-[1100px] md:w-[calc(100%_-_6rem)]; }
+  .skip-link { @apply fixed top-3 left-4 z-[100] -translate-y-24 rounded-md bg-accent px-5 py-3 text-sm text-white focus:translate-y-0; }
+  .nav-link { @apply inline-flex min-h-10 items-center justify-center gap-1 rounded-md px-1 text-[11px] text-muted hover:bg-surface hover:text-accent active:bg-accent-soft md:px-2 md:text-[13px]; }
+  .text-link { @apply font-medium underline decoration-ink/35 decoration-1 underline-offset-4 hover:text-accent hover:decoration-accent active:decoration-2; }
+  .resume-link { @apply mt-6 inline-flex min-h-11 items-center gap-3 rounded-md px-1 text-[13px] text-accent hover:bg-accent-soft active:bg-accent-soft; }
+  .resume-format { @apply rounded border border-white bg-white px-2 py-1 text-[10px] leading-none text-accent; }
+  @media (prefers-reduced-motion: no-preference) {
+    .availability-search { animation: availability-search 3.6s ease-in-out infinite; }
+  }
+  @keyframes availability-search {
+    0%, 20%, 80%, 100% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+  }
+  .section-heading { @apply mb-7; }
+  .section-title { @apply text-[28px] leading-snug font-normal tracking-[-.03em] md:text-[38px]; }
+  .section-heading > p { @apply mt-2 max-w-[650px] text-xs leading-relaxed text-muted md:text-[13px]; }
+  .project { @apply -mx-3 grid items-center gap-6 rounded-xl p-3 transition-colors duration-200 hover:bg-surface focus-within:bg-surface md:-mx-6 md:grid-cols-[.9fr_1.5fr] md:gap-10 md:p-6; }
+  .project-visual { @apply aspect-[1.45] w-full overflow-hidden rounded-lg md:aspect-[1.25]; background-color: var(--project-cover-bg, var(--color-surface)); }
+  .project-tags { @apply mt-4 flex list-none flex-wrap gap-2 p-0; }
+  .project-tags li { @apply rounded-full border border-line px-3 py-0.5 text-[11px] leading-relaxed text-muted; }
+  .project-link { @apply inline-flex min-h-8 items-center gap-2 rounded-sm text-xs text-accent underline decoration-transparent underline-offset-4 hover:decoration-accent; }
+  .project-status { @apply text-[11px] text-accent; }
+  .photo-note { @apply text-[11px] text-muted; }
+  .profile-switch { bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+  .profile-option { @apply flex min-h-11 min-w-28 items-center justify-center gap-2 rounded-full px-5 text-[13px] font-medium whitespace-nowrap text-muted transition-colors duration-200 hover:bg-surface hover:text-accent active:bg-accent-soft aria-[current=page]:bg-accent aria-[current=page]:text-white; }
+  .skills-tag { @apply rounded border border-line px-2.5 py-1 text-[11px] text-muted; }
+  .simple-page { @apply max-w-[650px] pt-[15vh] pb-[var(--dock-clearance)]; }
+  .simple-page h1 { @apply my-5 text-[42px] leading-snug tracking-tight; }
+  .simple-page p { @apply my-5 text-muted; }
+  .button { @apply inline-flex min-h-11 items-center justify-center gap-4 rounded-full border border-accent px-5 py-2 text-sm text-accent transition-colors hover:bg-accent-soft active:bg-accent-soft; }
+  .button-primary { @apply bg-accent text-white hover:bg-accent/90 active:bg-accent/80; }
+  .resume-button { @apply min-h-14 gap-4 px-8 py-3 text-[15px] font-medium; }
+  .flight-dialog {
+    @apply m-auto w-[calc(100%_-_1.5rem)] max-w-[960px] overflow-hidden rounded-2xl border border-line bg-white p-0 text-ink shadow-2xl;
+    height: min(760px, calc(100dvh - 24px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)));
+    max-height: none;
+  }
+  .flight-dialog[open] { display: flex; flex-direction: column; }
+  .flight-dialog::backdrop { @apply bg-ink/50 backdrop-blur-sm; }
+  .flight-icon-button { @apply inline-flex size-11 shrink-0 items-center justify-center rounded-full text-muted transition-colors hover:bg-surface hover:text-ink active:bg-accent-soft; }
+  .flight-dialog canvas:focus-visible { outline-offset: -4px; }
+  @media (max-height: 300px) {
+    .flight-dialog { overflow-y: auto; }
+  }
+}

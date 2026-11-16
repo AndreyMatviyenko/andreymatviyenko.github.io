@@ -1,0 +1,26 @@
+export default {
+  uk: {
+    launch: "Грати", loadError: "Не вдалося відкрити гру. Спробуйте ще раз.",
+    title: "Вільний політ", description: "Керуйте дроном, збирайте зірки й оминайте перешкоди.",
+    close: "Закрити гру", score: "Очки", time: "Час", lives: "Життя", best: "Рекорд", pointsUnit: "очок",
+    readyTitle: "Готові до польоту?", readyText: "Кожна зірка — 10 очок. У вас три життя. Кожні 15 секунд політ стає складнішим.",
+    pausedTitle: "Пауза", pausedText: "Можна видихнути. Продовжуйте, коли будете готові.",
+    overTitle: "Політ завершено", overText: "Ще одна спроба?", newRecord: "Новий особистий рекорд!",
+    start: "Почати політ", replay: "Зіграти ще", pause: "Пауза", resume: "Продовжити", restart: "Спочатку", playing: "Політ розпочато.",
+    controls: "Миша, стрілки або WASD. На телефоні — перетягуйте пальцем по полю.",
+    shortcuts: "Пробіл / P — пауза · Esc — закрити", fieldLabel: "Ігрове поле. Керуйте дроном мишею, стрілками, WASD або дотиком.",
+    recordNote: "Ваш рекорд зберігається в цьому браузері.", sessionNote: "Рекорд доступний до закриття цієї вкладки.",
+  },
+  en: {
+    launch: "Play", loadError: "The game could not open. Please try again.",
+    title: "Free flight", description: "Fly the drone, collect stars, and dodge obstacles.",
+    close: "Close game", score: "Score", time: "Time", lives: "Lives", best: "Best", pointsUnit: "points",
+    readyTitle: "Ready for takeoff?", readyText: "Each star is worth 10 points. You have three lives. The flight gets harder every 15 seconds.",
+    pausedTitle: "Paused", pausedText: "Take a breath. Continue when you’re ready.",
+    overTitle: "Flight complete", overText: "One more try?", newRecord: "A new personal best!",
+    start: "Start flight", replay: "Play again", pause: "Pause", resume: "Continue", restart: "Restart", playing: "Flight started.",
+    controls: "Mouse, arrow keys, or WASD. On your phone, drag anywhere on the field.",
+    shortcuts: "Space / P — pause · Esc — close", fieldLabel: "Game field. Control the drone using a mouse, arrow keys, WASD, or touch.",
+    recordNote: "Your best is saved in this browser.", sessionNote: "Your best is available until this tab closes.",
+  },
+};

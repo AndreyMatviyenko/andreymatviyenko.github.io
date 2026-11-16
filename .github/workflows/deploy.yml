@@ -1,0 +1,65 @@
+name: Build and deploy Eleventy
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Verify project-site paths
+        env:
+          ELEVENTY_PATH_PREFIX: /test-portfolio
+          SITE_URL: https://example.test
+        run: |
+          npx eleventy --output=_site-prefix
+          node scripts/check-site.mjs _site-prefix
+      - name: Get GitHub Pages configuration
+        if: github.event_name != 'pull_request'
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Build and verify production site
+        env:
+          ELEVENTY_PATH_PREFIX: ${{ steps.pages.outputs.base_path }}
+          SITE_URL: ${{ steps.pages.outputs.origin || 'https://andreymatviyenko.github.io' }}
+        run: npm test
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
