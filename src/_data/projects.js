@@ -29,7 +29,7 @@ export default {
     },
     {
       id: "seo-dashboard", name: "SEO Dashboard", cover: "seo", category: { uk: "Embedded / IoT", en: "Embedded / IoT" }, status: "finishing",
-      coverBackground: "#000",
+      coverBackground: "#dadada",
       image: "/assets/projects/seo-dashboard.png", imageFit: "contain", imageWidth: 801, imageHeight: 372,
       imageAlt: { uk: "SEO Dashboard: e-paper-дисплей з аналітикою сайту в корпусі", en: "SEO Dashboard: an enclosed e-paper display showing website analytics" },
       tags: ["ESP32-C3", "C/C++", "e-paper", "Google API"],
