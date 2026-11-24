@@ -28,7 +28,7 @@ export default {
       en: "Assembled and modified a device for detecting FPV video signals. A practical project combining electronics and hands-on hardware work.",
     },
     {
-      id: "seo-dashboard", name: "SEO Dashboard", cover: "seo", category: { uk: "Embedded / IoT", en: "Embedded / IoT" }, status: "finishing",
+      id: "seo-dashboard", name: "SEO Dashboard", cover: "seo", category: { uk: "Embedded / IoT", en: "Embedded / IoT" }, status: "complete",
       coverBackground: "#dadada",
       image: "/assets/projects/seo-dashboard.png", imageFit: "contain", imageWidth: 801, imageHeight: 372,
       imageAlt: { uk: "SEO Dashboard: e-paper-дисплей з аналітикою сайту в корпусі", en: "SEO Dashboard: an enclosed e-paper display showing website analytics" },
